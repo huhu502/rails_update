@@ -6,6 +6,11 @@ RUN \
   apt-get update && apt-get install -y nodejs --no-install-recommends && \
   # see http://guides.rubyonrails.org/command_line.html#rails-dbconsole
   apt-get update && apt-get install -y mysql-client postgresql-client sqlite3 --no-install-recommends && \
+  # install node and yarn
+  curl -sL https://deb.nodesource.com/setup_6.x | -E bash - && apt-get install -y nodejs && \
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add - && \
+echo "deb https://dl.yarnpkg.com/debian/ stable main" |  tee /etc/apt/sources.list.d/yarn.list && \
+  apt-get install yarn && \
   # Libzmq3-dev, for MySQL
   apt-get update && apt-get install -y libzmq3-dev --no-install-recommends && \
   # bundler
